@@ -9,15 +9,17 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 mongoose.Promise = global.Promise;
+
+// Local DB
 // mongoose.connect('mongodb://127.0.0.1/CRMdb', {
 //     useNewUrlParser: true
 // });
 
-mongoose.connect();
+// Atlas replica DB
+mongoose.connect(process.env.DB_URL);
 
-//bodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json(process.env.DB_URL));
+app.use(bodyParser.json());
 
 routes(app);
 
