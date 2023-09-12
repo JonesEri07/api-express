@@ -11,21 +11,17 @@ const PORT = process.env.PORT || 3000;
 mongoose.Promise = global.Promise;
 
 // Local DB
-// mongoose.connect('mongodb://127.0.0.1/CRMdb', {
-//     useNewUrlParser: true
-// });
+mongoose.connect('mongodb://127.0.0.1/CRMdb', {
+    useNewUrlParser: true
+});
 
 // Atlas replica DB
-mongoose.connect(process.env.DB_URL);
+// mongoose.connect(process.env.DB_URL);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 routes(app);
-
-app.get('/', (req, res) => {
-    res.send('hello from api');
-});
 
 app.listen(PORT, () => {});
 
